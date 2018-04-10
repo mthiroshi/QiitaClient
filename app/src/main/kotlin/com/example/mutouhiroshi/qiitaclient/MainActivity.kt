@@ -16,11 +16,17 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
+import javax.inject.Inject
 
 class MainActivity : RxAppCompatActivity() {
 
+    @Inject
+    lateinit var articleClient: ArticleClient
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        (application as QiitaClientApp).component.inject(this)
         setContentView(R.layout.activity_main)
 
         val listView: ListView = findViewById(R.id.list_view) as ListView
