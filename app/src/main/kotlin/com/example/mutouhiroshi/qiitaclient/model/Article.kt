@@ -9,7 +9,7 @@ data class Article(val id: String,
                    val user: User) : Parcelable {
     companion object {
         @JvmField
-    val CREATOR: Parcelable.Creator<Article> = object : Parcelable.Creator<Article> {
+        val CREATOR: Parcelable.Creator<Article> = object : Parcelable.Creator<Article> {
             override fun createFromParcel(source: Parcel): Article = source.run {
                 Article(readString(), readString(), readString(), readParcelable(Article::class.java.classLoader))
             }

@@ -8,7 +8,7 @@ import android.os.Parcelable
  */
 data class User(val id: String,
                 val name: String,
-                val profileImageUrl: String): Parcelable {
+                val profileImageUrl: String?): Parcelable {
     companion object {
         @JvmField
     val CREATOR: Parcelable.Creator<User> = object : Parcelable.Creator<User> {
@@ -27,7 +27,10 @@ data class User(val id: String,
         dest.run {
             writeString(id)
             writeString(name)
-            writeString(profileImageUrl)
+            profileImageUrl?.let {
+                writeString(it)
+            }
+
         }
     }
 }
